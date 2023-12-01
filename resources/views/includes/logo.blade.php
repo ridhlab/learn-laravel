@@ -1,0 +1,1 @@
+<h1 class="text-white font-bold text-5xl">QL</h1>

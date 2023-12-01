@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('questions')->group(function () {
+    Route::get('/', function () {
+        return view('pages.question.index');
+    });
+    Route::get('/create', function () {
+        return view('pages.question.create');
+    });
+});
