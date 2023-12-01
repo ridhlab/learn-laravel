@@ -3,7 +3,7 @@
     <div class="flex">
         <div class="w-48 h-[100vh] bg-slate-500 px-4 py-8">
             <div class="flex justify-center items-center mb-10">
-                @include('includes.logo')
+                @include('components.logo')
             </div>
             <ul>
                 <li class="text-white">
@@ -13,9 +13,8 @@
                 </li>
             </ul>
         </div>
-        <div class="flex-auto">
-
+        <div class="flex-auto p-8 bg-slate-200">
+            @yield('mainContent')
         </div>
     </div>
-    @yield('mainContent')
 @endsection

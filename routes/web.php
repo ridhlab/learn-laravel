@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('questions')->group(function () {
-    Route::get('/', function () {
-        return view('pages.question.index');
-    });
-    Route::get('/create', function () {
-        return view('pages.question.create');
-    });
+Route::controller(QuestionController::class)->prefix('questions')->group(function () {
+    Route::get('/', 'index')->name('question.index');
+    Route::get('/create', 'create')->name('question.create');
+    Route::post('/store', 'store')->name('question.store');
 });
