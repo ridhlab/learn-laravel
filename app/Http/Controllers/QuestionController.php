@@ -52,4 +52,14 @@ class QuestionController extends Controller
             throw $th;
         }
     }
+
+    function delete(Request $request)
+    {
+        try {
+            $this->questionCrudApplication->deleteQuestion($request->route('id'));
+            return redirect()->route('question.index')->with('success', 'Question has been successfully deleted');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

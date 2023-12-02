@@ -16,14 +16,23 @@
                                 {{$question->content}}
                             </p>
                         </a>
-                        <a href="/questions/{{$question->id}}/edit">
-                            <button>
-                                <x-sui-pen class="w-6 h-6 text-slate-500"/>
-                            </button>
-                        </a>
+                        <div class="flex gap-x-2 items-center">
+                            <a href="/questions/{{$question->id}}/edit" class="flex items-center">
+                                <button>
+                                    <x-sui-pen class="w-6 h-6 text-slate-500"/>
+                                </button>
+                            </a>
+                            <form action="/questions/{{$question->id}}/delete" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    <x-sui-trash class="w-6 h-6 text-slate-500"/>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             @endforeach 
         </div>
-        </div>
+    </div>
 @endsection

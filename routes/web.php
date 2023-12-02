@@ -25,4 +25,5 @@ Route::controller(QuestionController::class)->prefix('questions')->group(functio
 
     Route::post('/store', 'store')->name('question.store');
     Route::put('/{id}/update', 'update')->name('question.update');
+    Route::delete('/{id}/delete', 'delete')->name('question.delete');
 });

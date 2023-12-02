@@ -32,4 +32,10 @@ class QuestionCrudApplication
         $question->content = $request->content;
         $question->save();
     }
+
+    public function deleteQuestion($id)
+    {
+        $question = Question::findOrFail($id);
+        $question->delete();
+    }
 }
