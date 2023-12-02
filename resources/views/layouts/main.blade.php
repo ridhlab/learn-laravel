@@ -14,6 +14,7 @@
             </ul>
         </div>
         <div class="flex-auto p-8 bg-slate-200">
+           @include('components.notification')
             @yield('mainContent')
         </div>
     </div>

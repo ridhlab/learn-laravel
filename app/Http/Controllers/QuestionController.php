@@ -16,7 +16,8 @@ class QuestionController extends Controller
 
     function index()
     {
-        return view('pages.question.index');
+        $questions = $this->questionCrudApplication->fetch();
+        return view('pages.question.index')->with('questions', $questions);
     }
 
     function create()
@@ -27,7 +28,7 @@ class QuestionController extends Controller
     function store(StoreQuestionRequest $request)
     {
         try {
-            $this->questionCrudApplication->store(['content' => $request->input('content')]);
+            $this->questionCrudApplication->addQuestion(['content' => $request->input('content')]);
             return redirect()->route('question.index')->with('success', 'Question has been successfully added');
         } catch (\Throwable $th) {
             throw $th;
