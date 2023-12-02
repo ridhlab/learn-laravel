@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Applications\Questions\QuestionCrudApplication;
+use App\Http\Requests\UpdateQuestionRequest;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -28,8 +30,24 @@ class QuestionController extends Controller
     function store(StoreQuestionRequest $request)
     {
         try {
-            $this->questionCrudApplication->addQuestion(['content' => $request->input('content')]);
+            $this->questionCrudApplication->addQuestion($request);
             return redirect()->route('question.index')->with('success', 'Question has been successfully added');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    function edit(Request $request)
+    {
+        $data = $this->questionCrudApplication->getById($request->route('id'));
+        return view('pages.question.edit')->with('data', $data);
+    }
+
+    function update(UpdateQuestionRequest $request)
+    {
+        try {
+            $this->questionCrudApplication->updateQuestion($request->route('id'), $request);
+            return redirect()->route('question.index')->with('success', 'Question has been successfully updated');
         } catch (\Throwable $th) {
             throw $th;
         }

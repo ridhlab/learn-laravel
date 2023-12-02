@@ -21,5 +21,8 @@ Route::get('/', function () {
 Route::controller(QuestionController::class)->prefix('questions')->group(function () {
     Route::get('/', 'index')->name('question.index');
     Route::get('/create', 'create')->name('question.create');
+    Route::get('/{id}/edit', 'edit')->name('question.edit');
+
     Route::post('/store', 'store')->name('question.store');
+    Route::put('/{id}/update', 'update')->name('question.update');
 });

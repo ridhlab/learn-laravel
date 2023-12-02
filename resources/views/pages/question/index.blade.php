@@ -11,10 +11,12 @@
             @foreach($questions as $question)
                 <div class="rounded-md bg-white p-4">
                     <div class="flex justify-between">
-                        <p>
-                            {{$question->content}}
-                        </p>
                         <a href="/questions/{{$question->id}}">
+                            <p>
+                                {{$question->content}}
+                            </p>
+                        </a>
+                        <a href="/questions/{{$question->id}}/edit">
                             <button>
                                 <x-sui-pen class="w-6 h-6 text-slate-500"/>
                             </button>

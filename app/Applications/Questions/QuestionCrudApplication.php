@@ -19,4 +19,17 @@ class QuestionCrudApplication
         $questions = Question::all();
         return $questions;
     }
+
+    public function getById($id)
+    {
+        $question = Question::findOrFail($id);
+        return $question;
+    }
+
+    public function updateQuestion($id, $request)
+    {
+        $question = Question::findOrFail($id);
+        $question->content = $request->content;
+        $question->save();
+    }
 }
