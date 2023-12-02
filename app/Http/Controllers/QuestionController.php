@@ -27,6 +27,20 @@ class QuestionController extends Controller
         return view('pages.question.create');
     }
 
+
+    function edit(Request $request)
+    {
+        $data = $this->questionCrudApplication->getById($request->route('id'));
+        return view('pages.question.edit')->with('data', $data);
+    }
+
+
+    function detail(Request $request)
+    {
+        $data = $this->questionCrudApplication->getById($request->route('id'));
+        return view('pages.question.detail')->with('data', $data);
+    }
+
     function store(StoreQuestionRequest $request)
     {
         try {
@@ -35,12 +49,6 @@ class QuestionController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-    }
-
-    function edit(Request $request)
-    {
-        $data = $this->questionCrudApplication->getById($request->route('id'));
-        return view('pages.question.edit')->with('data', $data);
     }
 
     function update(UpdateQuestionRequest $request)
