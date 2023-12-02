@@ -15,4 +15,10 @@ class AnswerCrudApplication
 
         $answer->save();
     }
+
+    public function getAnswersByQuestionId($questionId)
+    {
+        $answers = Answer::where('question_id', $questionId)->get();
+        return $answers;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Applications\Answers\AnswerCrudApplication;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Applications\Questions\QuestionCrudApplication;
 use App\Http\Requests\UpdateQuestionRequest;
@@ -10,10 +11,12 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     private QuestionCrudApplication $questionCrudApplication;
+    private AnswerCrudApplication $answerCrudApplication;
 
-    public function __construct(QuestionCrudApplication $questionCrudApplication)
+    public function __construct(QuestionCrudApplication $questionCrudApplication, AnswerCrudApplication $answerCrudApplication)
     {
         $this->questionCrudApplication = $questionCrudApplication;
+        $this->answerCrudApplication = $answerCrudApplication;
     }
 
     function index()
@@ -37,8 +40,10 @@ class QuestionController extends Controller
 
     function detail(Request $request)
     {
-        $data = $this->questionCrudApplication->getById($request->route('id'));
-        return view('pages.question.detail')->with('data', $data);
+        $questionId = $request->route('id');
+        $data = $this->questionCrudApplication->getById($questionId);
+        $answers = $this->answerCrudApplication->getAnswersByQuestionId($questionId);
+        return view('pages.question.detail')->with('data', $data)->with('answers', $answers);
     }
 
     function store(StoreQuestionRequest $request)
