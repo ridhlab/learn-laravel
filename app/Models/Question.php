@@ -19,6 +19,10 @@ class Question extends Model
         });
     }
 
+    protected $casts = [
+        'id' => 'string'
+    ];
+
     protected $fillable = [
         'content',
     ];
