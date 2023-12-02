@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,10 @@ Route::controller(QuestionController::class)->prefix('questions')->group(functio
     Route::post('/store', 'store')->name('question.store');
     Route::put('/{id}/update', 'update')->name('question.update');
     Route::delete('/{id}/delete', 'delete')->name('question.delete');
+});
+
+Route::controller(AnswerController::class)->prefix('answers')->group(function () {
+    Route::get('/create/{questionId}', 'create')->name('answer.create');
+
+    Route::post('/store', 'store')->name('answer.store');
 });
