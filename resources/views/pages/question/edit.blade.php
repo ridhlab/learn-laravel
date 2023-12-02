@@ -2,7 +2,7 @@
 
 @section('mainContent')
     <div class="flex flex-col gap-y-4">
-        <a href="/questions">Back</a>
+        <a href="/questions" class="flex items-center gap-x-2"><x-sui-arrow-left-circle class="w-6 h-6"/>Back</a>
         <div class="rounded-md bg-white p-4">
             <form action="/questions/{{$data->id}}/update" method="POST" enctype="multipart/form-data">
                 @csrf
