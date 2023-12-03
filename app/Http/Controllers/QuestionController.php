@@ -11,12 +11,10 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     private QuestionCrudApplication $questionCrudApplication;
-    private AnswerCrudApplication $answerCrudApplication;
 
     public function __construct(QuestionCrudApplication $questionCrudApplication, AnswerCrudApplication $answerCrudApplication)
     {
         $this->questionCrudApplication = $questionCrudApplication;
-        $this->answerCrudApplication = $answerCrudApplication;
     }
 
     function index()
@@ -42,8 +40,7 @@ class QuestionController extends Controller
     {
         $questionId = $request->route('id');
         $data = $this->questionCrudApplication->getById($questionId);
-        $answers = $this->answerCrudApplication->getAnswersByQuestionId($questionId);
-        return view('pages.question.detail')->with('data', $data)->with('answers', $answers);
+        return view('pages.question.detail')->with('data', $data);
     }
 
     function store(StoreQuestionRequest $request)

@@ -14,9 +14,9 @@
             </div>
             <div class="flex flex-col gap-y-2">
                 <h4 class="text-lg font-medium">List Answers</h4>
-                @if (count($answers) > 0)
+                @if (count($data->answers) > 0)
                     <div class="flex flex-col gap-y-2">
-                        @foreach ($answers as $answer)
+                        @foreach ($data->answers as $answer)
                             <div class="rounded-md bg-white p-4">
                                 <p>{{$answer->content}}</p>
                             </div>
