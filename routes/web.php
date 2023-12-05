@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'loginPage')->name('auth.login');
+    Route::get('/register', 'registerPage')->name('auth.register');
+
+    Route::post('/auth/register', 'register')->name('auth.register');
+    Route::post('/auth/login', 'login')->name('auth.login');
+    Route::post('/auth/logout', 'logout')->name('auth.logout');
 });
 
 Route::controller(QuestionController::class)->prefix('questions')->group(function () {

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreQuestionRequest;
 use App\Applications\Questions\QuestionCrudApplication;
 use App\Http\Requests\UpdateQuestionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
