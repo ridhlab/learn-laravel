@@ -21,8 +21,8 @@ Route::get('/', function () {
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'loginPage')->name('auth.login');
-    Route::get('/register', 'registerPage')->name('auth.register');
+    Route::get('/login', 'loginPage')->name('auth.login')->middleware('guest');
+    Route::get('/register', 'registerPage')->name('auth.register')->middleware('guest');
 
     Route::post('/auth/register', 'register')->name('auth.register');
     Route::post('/auth/login', 'login')->name('auth.login');
