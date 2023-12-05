@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Applications\Auth\AuthApplication;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -58,10 +59,12 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         try {
             Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
             return redirect('/login');
         } catch (\Throwable $th) {
             throw $th;
