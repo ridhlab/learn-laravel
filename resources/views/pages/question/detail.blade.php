@@ -6,6 +6,7 @@
         <div class="flex flex-col gap-y-8">
             <div class="rounded-md bg-white p-4">
                 <div class="flex flex-col gap-y-2">
+                    <p class="text-slate-500">Asked by {{$data->user->name}}</p>
                     <h2 class="font-medium text-2xl">{{$data->content}}</h2>
                     <a href="/answers/create/{{$data->id}}" class="w-full">
                         <button class="bg-white border-slate-500 border-2 p-2 rounded-md w-full">Answer</button>
@@ -18,6 +19,7 @@
                     <div class="flex flex-col gap-y-2">
                         @foreach ($data->answers as $answer)
                             <div class="rounded-md bg-white p-4">
+                                <p class="text-sm text-slate-500">Answered by {{$answer->user->name}}</p>
                                 <p>{{$answer->content}}</p>
                             </div>
                         @endforeach

@@ -7,11 +7,12 @@ use App\Models\Answer;
 
 class AnswerCrudApplication
 {
-    public function addAnswer(StoreAnswerRequest $request)
+    public function addAnswer(StoreAnswerRequest $request, string $userId)
     {
         $answer = new Answer();
         $answer->content = $request->input('content');
         $answer->question_id = $request->input('question_id');
+        $answer->user_id = $userId;
 
         $answer->save();
     }

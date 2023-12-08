@@ -47,7 +47,7 @@ class QuestionController extends Controller
     function store(StoreQuestionRequest $request)
     {
         try {
-            $this->questionCrudApplication->addQuestion($request);
+            $this->questionCrudApplication->addQuestion($request, Auth::user()->id);
             return redirect()->route('question.index')->with('success', 'Question has been successfully added');
         } catch (\Throwable $th) {
             throw $th;

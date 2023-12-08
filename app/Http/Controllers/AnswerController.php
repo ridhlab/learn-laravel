@@ -6,6 +6,7 @@ use App\Applications\Answers\AnswerCrudApplication;
 use App\Applications\Questions\QuestionCrudApplication;
 use App\Http\Requests\StoreAnswerRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
@@ -28,7 +29,7 @@ class AnswerController extends Controller
     public function store(StoreAnswerRequest $request)
     {
         try {
-            $this->answerCrudApplication->addAnswer($request);
+            $this->answerCrudApplication->addAnswer($request, Auth::user()->id);
             return redirect()->route('question.detail', ['id' => $request->input('question_id')])->with('success', 'Answer has been successfully added');
         } catch (\Throwable $th) {
             throw $th;

@@ -2,14 +2,16 @@
 
 namespace App\Applications\Questions;
 
+use App\Http\Requests\StoreQuestionRequest;
 use App\Models\Question;
 
 class QuestionCrudApplication
 {
-    public function addQuestion($request)
+    public function addQuestion(StoreQuestionRequest $request,  string $userId)
     {
         $question = new Question();
-        $question->content = $request['content'];
+        $question->content = $request->validated()['content'];
+        $question->user_id = $userId;
 
         $question->save();
     }
