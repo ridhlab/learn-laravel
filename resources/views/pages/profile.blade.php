@@ -1,9 +1,10 @@
 @extends('layouts.main')
 
 @section('mainContent')
-    <div class="flex flex-col gap-y-4">
+    <div class="flex flex-col gap-y-4"> 
         <a href="/questions" class="flex items-center gap-x-2"><x-sui-arrow-left-circle class="w-6 h-6"/>Back</a>
-        <form action="/profile/{{Auth::user()->profile->id}}/update" method="POST" class="flex flex-col gap-y-2">
+        <form action="/profile/{{Auth::user()->profile->id}}/update" method="POST" class="flex flex-col gap-y-2" enctype="multipart/form-data">
+            <img src="{{$profile_picture_url}}" alt="profile-picture-{{Auth::user()->email}}" width="300">
             @csrf
             @method('PUT')
             <div class="flex flex-col gap-y-1">
@@ -25,6 +26,7 @@
                     <label for="female">Female</label>
                 </div>
             </div>
+            <input type="file" name="profile_picture" id="file" accept="image/png, image/jpeg, image/jpg">
             <button class="bg-slate-500 text-white p-2 rounded-md" type="submit">Submit</button>
         </form>
         <div>

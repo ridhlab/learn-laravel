@@ -27,7 +27,8 @@ class UpdateProfileRequest extends FormRequest
         return [
             'bio' => ['required'],
             'occupation' => ['required'],
-            'gender' => ['required', new Enum(GenderEnum::class)]
+            'gender' => ['required', new Enum(GenderEnum::class)],
+            'profile_picture' =>  ['required', 'mimes:png,jpg,jpeg', 'max:2048']
         ];
     }
 }
