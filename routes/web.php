@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/auth/register', 'register')->name('auth.register');
     Route::post('/auth/login', 'login')->name('auth.login');
     Route::post('/auth/logout', 'logout')->name('auth.logout');
+});
+
+Route::controller(ProfileController::class)->prefix('profile')->group(function () {
+    Route::get('/{id}', 'profilePage')->name('profile.profile-page');
+    Route::put('/{id}/update', 'update')->name('profile.update');
 });
 
 Route::controller(QuestionController::class)->prefix('questions')->group(function () {

@@ -9,10 +9,10 @@
                 </div>
                 <div class="flex flex-col gap-y-4">
                     @if (Auth::check())
-                        <div class="flex flex-col items-center">
+                        <a href="/profile/{{Auth::user()->profile->id}}" class="flex flex-col items-center">
                             <x-sui-user-male-circle class="w-10 h-10 text-white"/>
                             <p class="text-white">{{Auth::user()->name}}</p>
-                        </div>
+                        </a>
                     @endif
                     <ul>
                         <li class="text-white">
